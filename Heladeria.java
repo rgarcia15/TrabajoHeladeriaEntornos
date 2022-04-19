@@ -12,8 +12,9 @@ import java.util.*;
  */
 public class Heladeria {
     private double precio;
-    private String sabor,sabor1,sabor2,sabor3,sabor4,recipiente;
-
+    private int i=0;
+    private String recipiente;
+    private String [] sabores=new String[3];
     public Heladeria(){
         
     }
@@ -22,7 +23,7 @@ public class Heladeria {
         this.recipiente = recipiente;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio() {
         if(recipiente.equalsIgnoreCase("cono")){
             this.precio+=1;
         }else{
@@ -33,45 +34,35 @@ public class Heladeria {
         return precio;
     }
     public void setSabor(String sabor) {
-        this.sabor = sabor;
+        this.sabores[i]= sabor;
+        i+=1;
     }
-    public void setSabor1(String sabor1) {
-        this.sabor1 = sabor1;
-    }
-    public void setSabor2(String sabor2) {
-        this.sabor2 = sabor2;
-    }
-    public void setSabor3(String sabor3) {
-        this.sabor3 = sabor3;
-    }
-    public void setSabor4(String sabor4) {
-        this.sabor4 = sabor4;
-    }
+    
 
     public String toString() {
-        if(sabor1==null&&sabor4==null){
-            precio+=1;
-            return "Aqui tiene su helado con sabor "+sabor+" en su "+recipiente+" son "+precio;
-            
+        if(i==2){
+            this.precio+=1.50;
+            return "Aqui tiene su helado con sabores "+sabores[0]+" "+sabores[1]+" en su "+recipiente+" son "+precio;    
+        }else if(i==3){
+            this.precio+=2;
+            return "Aqui tiene su helado con sabores "+sabores[0]+" "+sabores[1]+" "+sabores[2]+" en su "+recipiente+" son "+precio;
         }else{
-            if(sabor2==null&&sabor3==null){
-                precio+=1.50;
-                return "Aqui tiene su helado con sabores "+sabor+" "+sabor1+" en su "+recipiente+" son "+precio;
-            }else{
-                return "Aqui tiene su helado con sabores "+sabor+" "+sabor1+" "+sabor2+" "+sabor3+" "+sabor4+ " en su "+recipiente+" son "+precio;
-            }
+            this.precio+=1;
+            return "Aqui tiene su helado con sabores "+sabores[0]+" en su "+recipiente+" son "+precio;
         }
-        
+       
     }
+        
+    
     public static void main(String[] args) {
         Heladeria a=new Heladeria();
+        int i=0;
         String n="si";
         while(n.equalsIgnoreCase("si")){
             System.out.println("Introduzca una opcion: ");
             System.out.println("-----------------------------------------------");
             System.out.println("1. ¿Donde quiere su helado?");
             System.out.println("2. ¿De que sabor quiere su helado?");
-            System.out.println("3. ¿Quiere comprar otro helado?");
             System.out.println("-----------------------------------------------");
             int opcion = new Scanner(System.in).nextInt();
             switch(opcion){
@@ -85,17 +76,19 @@ public class Heladeria {
                         switch(opcionT){
                             case 1:
                                 a.setRecipiente("Cono");
+                                a.setPrecio();
                                 System.out.println("Aqui tiene su Cono de Chocolate");
                                 break;
                             case 2:
                                 a.setRecipiente("Tarrina");
+                                a.setPrecio();
                                 System.out.println("Aqui tiene su Tarrina");
                                 break;
                         }
                 break;
                 case 2:
-                        for(int i=0;i<3;i++){
-                            System.out.println("Introduzca una opcion (Cada sabor sera 0.50€ mas a partir del primero que costara 1€): ");
+                        for(i=0;i<6;i++){
+                            System.out.println("Introduzca una opcion (sabor 1€): ");
                             System.out.println("-----------------------------------------------");
                             System.out.println("1. Chocolate");
                             System.out.println("2. Nata");
@@ -104,6 +97,7 @@ public class Heladeria {
                             System.out.println("5. Naranja");
                             System.out.println("-----------------------------------------------");
                             int opcionS=new Scanner(System.in).nextInt();
+                            
                             switch(opcionS){
                                 case 1: 
                                     System.out.println("usted ha añadido el sabor Chocolate a su helado");
@@ -114,27 +108,101 @@ public class Heladeria {
                                     int opcionN=new Scanner(System.in).nextInt();    
                                     switch(opcionN){
                                         case 1:
+                                          
+                                            if(i>2){
+                                                n="no";
+                                            } 
+                                            i+=1;
                                             break;
                                         case 2:
                                             n="no";
+                                            i+=3;
                                             break;
                                         }
                                     break;
                                 case 2:
                                     System.out.println("usted ha añadido el sabor Nata a su helado");
-                                    a.setSabor1("Nata");
+                                    a.setSabor("Nata");
+                                    System.out.println("¿Quiere otro sabor?");
+                                    System.out.println("1. Si");
+                                    System.out.println("2. No");
+                                    int opcionC=new Scanner(System.in).nextInt();    
+                                    switch(opcionC){
+                                        case 1:
+                                          
+                                            if(i==3){
+                                                n="no";
+                                            } 
+                                            i+=1;
+                                            break;
+                                        case 2:
+                                            n="no";
+                                            i+=3;
+                                            break;
+                                        }
                                     break;
                                 case 3:
                                     System.out.println("usted ha añadido el sabor Limon a su helado");
-                                    a.setSabor2("Limon");
+                                    a.setSabor("Limon");
+                                    System.out.println("¿Quiere otro sabor?");
+                                    System.out.println("1. Si");
+                                    System.out.println("2. No");
+                                    int opcionX=new Scanner(System.in).nextInt();    
+                                    switch(opcionX){
+                                        case 1:
+                                           
+                                            if(i==3){
+                                                n="no";
+                                            } 
+                                            i++;
+                                            break;
+                                        case 2:
+                                            n="no";
+                                            i+=3;
+                                            break;
+                                        }
                                     break;
                                 case 4:
                                     System.out.println("usted ha añadido el sabor Fresa a su helado");
-                                    a.setSabor3("Fresa");
+                                    a.setSabor("Fresa");
+                                    System.out.println("¿Quiere otro sabor?");
+                                    System.out.println("1. Si");
+                                    System.out.println("2. No");
+                                    int opcionZ=new Scanner(System.in).nextInt();    
+                                    switch(opcionZ){
+                                        case 1:
+                                          
+                                            if(i==3){
+                                                n="no";
+                                            } 
+                                            i+=1;
+                                            break;
+                                        case 2:
+                                            n="no";
+                                            i+=4;
+                                            break;
+                                        }
                                     break;
                                 case 5:
                                     System.out.println("usted ha añadido el sabor Naranja a su helado");
-                                    a.setSabor4("Naranja");
+                                    a.setSabor("Naranja");
+                                    System.out.println("¿Quiere otro sabor?");
+                                    System.out.println("1. Si");
+                                    System.out.println("2. No");
+                                    int opcionH=new Scanner(System.in).nextInt();    
+                                    switch(opcionH){
+                                        case 1:
+                                          
+                                            if(i==3){
+                                                n="no";
+                                            } 
+                                            i+=1;
+                                            break;
+                                        case 2:
+                                            n="no";
+                                            i+=3;
+                                            break;
+                                        }
                                     break;
                             }    
                         }
