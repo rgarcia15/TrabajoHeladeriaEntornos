@@ -18,7 +18,7 @@ public class HeladoArreglado {
      */
     public static void main(String[] args) {
         float precio=0;
-        int numSabores=0;
+        //int numSabores=0;
         //int numHelados=0;
         int saboresRestantes=0;
         String[] pedidoHelado= new String[5];
