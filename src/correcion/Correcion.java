@@ -19,6 +19,7 @@ public class Correcion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        boolean si=true;
         DecimalFormat vuelta = new DecimalFormat("0.00");
         boolean bucle = true;
         double precio=0;
@@ -55,33 +56,58 @@ public class Correcion {
                         if (i==3){
                             System.out.println("Lo siento, has llegado al máximo de sabores de helados ");
                             System.out.println("Su helado es de tipo "+c+" y sus sabores son "+datos[0]+" "+datos[1]+" "+datos[2]);
-                            System.out.println("El precio total es: "+precio);
-                            System.out.println("Con cuanto quiere pagar?");
-                            double pa=new Scanner(System.in).nextDouble();
-                            precio=pa-precio;
-                            System.out.println("Su vuelta es de: "+vuelta.format(precio));
-                            bucle=false;
+                            while(si){
+                                System.out.println("El precio total es: "+precio);
+                                System.out.println("Con cuanto quiere pagar?");
+                                double pa=new Scanner(System.in).nextDouble();
+                                if(pa<precio){
+                                    System.out.println("No es suficiente para pagar.");
+                                }
+                                else{
+                                    precio=pa-precio;
+                                    System.out.println("Su vuelta es de: "+vuelta.format(precio));
+                                    System.out.println("Hasta pronto, muchas gracias");
+                                    bucle=false;
+                                    si=false;
+                                }
+                            }
                         }else{
                             if (cont.equalsIgnoreCase("Si")){
                                 System.out.println("Vale....");
                             }else if (i==2&&cont.equalsIgnoreCase("No")){
                                 System.out.println("El helado es de tipo "+c+" y su sabores son "+datos[0]+" "+datos[1]);
-                                System.out.println("El precio total es: "+precio);
-                                System.out.println("Con cuanto quiere pagar?");
-                                double pa=new Scanner(System.in).nextDouble();
-                                precio=pa-precio;
-                                System.out.println("Su vuelta es de: "+vuelta.format(precio));
-                                System.out.println("Hasta pronto, muchas gracias");
-                                bucle=false;
+                                while(si){
+                                   System.out.println("El precio total es: "+precio);
+                                   System.out.println("Con cuanto quiere pagar?");
+                                   double pa=new Scanner(System.in).nextDouble();
+                                   if(pa<precio){
+                                       System.out.println("No es suficiente para pagar.");
+                                   }
+                                   else{
+                                      precio=pa-precio;
+                                      System.out.println("Su vuelta es de: "+vuelta.format(precio));
+                                      System.out.println("Hasta pronto, muchas gracias");
+                                      bucle=false;
+                                      si=false;
+                                   }
+                                }
                             }else if (i==1&&cont.equalsIgnoreCase("No")){
                                 System.out.println("El helado es de tipo "+c+" y su sabor de helado es "+datos[0]);
-                                System.out.println("El precio total es: "+precio);
-                                System.out.println("Con cuanto quiere pagar?");
-                                double pa=new Scanner(System.in).nextDouble();
-                                precio=pa-precio;
-                                System.out.println("Su vuelta es de: "+vuelta.format(precio));
-                                System.out.println("Hasta pronto, muchas gracias");
-                                bucle=false;
+                                while(si){
+                                    System.out.println("El precio total es: "+precio);
+                                    System.out.println("Con cuanto quiere pagar?");
+                                    double pa=new Scanner(System.in).nextDouble();
+                                    if(pa<precio){
+                                           System.out.println("No es suficiente para pagar.");
+                                       }
+                                    else{
+                                        precio=pa-precio;
+                                        System.out.println("Su vuelta es de: "+vuelta.format(precio));
+                                        System.out.println("Hasta pronto, muchas gracias");
+                                        bucle=false;
+                                        si=false;
+                                    }
+                                }
                             }
                         }
                     }else{
