@@ -293,14 +293,19 @@ public class Helado {
                         System.out.println("HELADERÍA");
                         System.out.println("Su helado cuesta:"+precio+" con cuanto va a pagar?");
                         double option2=new Scanner(System.in).nextInt();
+                        int a=0;
+                        for(int i=0;i>a;i++){
                             if(option2==precio){
                                 System.out.println("Muchas gracias por pagar con el precio exacto!");
                             }if(option2<precio){
                                 System.out.println("Vayase sin su helado");
+                                a=a+2;
                             }if(option2>precio){
                                 double din= option2-precio;
                                 System.out.println("Aqui tiene su vuelta de "+din+" \nGracias por confiar en nuestro servicio!");
                             }
+                        }
+                            
                     
                             String precio2=precio+"€";
                             pedidoHelado[4]=precio2;
