@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package heladoarreglado;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,7 +18,8 @@ public class HeladoArreglado {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        float precio=0;
+        double precio=0;
+        DecimalFormat df=new DecimalFormat("0.00");
         //int numSabores=0;
         //int numHelados=0;
         int saboresRestantes=0;
@@ -62,13 +64,13 @@ public class HeladoArreglado {
                                 switch(option2){
                                     case 1:
                                         System.out.println("Cono elegido");
-                                        precio+= 1;
+                                        precio+= 1+(1*0.1);
                                         pedidoHelado[0]="Cono";
                                         activo2=false;
                                     break;
                                     case 2:
                                         System.out.println("Tarrina elegida");
-                                        precio+= 0.50;
+                                        precio+= 0.50+(0.50*0.1);
                                         pedidoHelado[0]="Tarrina";
                                         activo2=false;
                                     break;
@@ -97,7 +99,8 @@ public class HeladoArreglado {
                             System.out.println("3 - Chocolate");
                             System.out.println("4 - Naranja");
                             System.out.println("5 - Limón");
-                            System.out.println("6 - Cancelar");
+                            System.out.println("6 - Pistacho");
+                            System.out.println("7 - Cancelar");
                             while(activo3){
                                 try{
                                     System.out.print("Elige una opción: ");
@@ -105,35 +108,41 @@ public class HeladoArreglado {
                                     switch(option2){
                                         case 1:
                                             System.out.println("Fresa elegida");
-                                            precio+= 1;
+                                            precio+= 1+(1*0.1);
                                             pedidoHelado[1]="Fresa";
                                             activo3=false;
                                         break;
                                         case 2:
                                             System.out.println("Nata elegida");
-                                            precio+= 1;
+                                            precio+= 1+(1*0.1);
                                             pedidoHelado[1]="Nata";
                                             activo3=false;
                                         break;
                                         case 3:
                                             System.out.println("Chocolate elegido");
-                                            precio+= 1;
+                                            precio+= 1+(1*0.1);
                                             pedidoHelado[1]="Chocolate";
                                             activo3=false;
                                         break;
                                         case 4:
                                             System.out.println("Naranja elegida");
-                                            precio+= 1;
+                                            precio+= 1+(1*0.1);
                                             pedidoHelado[1]="Naranja";
                                             activo3=false;
                                         break;
                                         case 5:
                                             System.out.println("Limón elegida");
-                                            precio+= 1;
+                                            precio+= 1+(1*0.1);
                                             pedidoHelado[1]="Limón";
                                             activo3=false;
                                         break;
                                         case 6:
+                                            System.out.println("Pistacho elegida");
+                                            precio+= 1+(1*0.1);
+                                            pedidoHelado[1]="Pistacho";
+                                            activo3=false;
+                                        break;
+                                        case 7:
                                             System.out.println("Cancelando");
                                             activo3=false;
                                         break;
@@ -278,7 +287,26 @@ public class HeladoArreglado {
                         }
                     break;
                     case 4:
-                        String precio2=precio+"€";
+                        double vuelta=0;
+                        boolean activo5=true;
+                        System.out.println("¿Con cuanto dinero vas a pagar?");
+                        while(activo5){
+                        try{
+                            System.out.print("Cantidad: ");
+                            double pagar=new Scanner(System.in).nextDouble();
+                            if(pagar<precio){
+                                System.out.println("Esa cantidad no es suficiente");
+                                System.out.println("¿Con cuanto dinero vas a pagar?");
+                            }else if(pagar>=precio){
+                                vuelta=pagar-precio;
+                                activo5=false;
+                            }
+                        }catch(InputMismatchException e){
+                            System.out.println("Introduce una cantidad válida");
+                            System.out.println("¿Con cuanto dinero vas a pagar?");
+                        }
+                        }
+                        String precio2=df.format(precio)+"€";
                         pedidoHelado[4]=precio2;
                         activo=false;
                         for(int i=0; i<5; i++){
@@ -287,6 +315,7 @@ public class HeladoArreglado {
                             }
                         }
                         System.out.println(Arrays.toString(pedidoHelado));
+                        System.out.println("Tu vuelta es de "+df.format(vuelta)+"€");
                     break;
                     default:
                         System.out.println("Opción Invalida");
